@@ -36,8 +36,9 @@ endif()
 include_directories(.)
 include_directories(${BORIS_MATH_INCLUDE_DIRS})
 aux_source_directory(Trajectory SRC_FILES_P1)
+aux_source_directory(Models SRC_FILES_P2)
 
-set(SRC_FILES ${SRC_FILES_P1})
+set(SRC_FILES ${SRC_FILES_P1} ${SRC_FILES_P2})
 
 add_library(BORIS_PNC_COMMON_LIB ${SRC_FILES})
 
