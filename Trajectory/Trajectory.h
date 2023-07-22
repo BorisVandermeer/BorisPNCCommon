@@ -35,6 +35,12 @@ namespace PNC_Common{
                 FromHeading=Data->getHeading(0);ToHeading = Data->getHeading(Data->max_s);
                 length = Data->max_s;
             }
+        void SetCurve(RefPoints & points, double rebuildsize){
+                Data = std::make_shared<Interplot::SplineCurve>();   Data->setPoints(points);
+                FromHeading=Data->getHeading(0);ToHeading = Data->getHeading(Data->max_s);
+                Data->rebuild(rebuildsize);
+                length = Data->max_s;
+            }
         void SetCurve(RefPoints & points,double _FromHeading, double _ToHeading){
                 Data = std::make_shared<Interplot::SplineCurve>();  
                 Data->setPoints(points,_FromHeading,_ToHeading);
@@ -48,10 +54,10 @@ namespace PNC_Common{
         double getProjection(Point2D refpos,double min_s,double max_s) const {return Data->getProjection(refpos,max_s,min_s);}
 
         PathSegmentType Type;
+        double length;
         
     private:
         CurvePtr Data;
-        double length;
         double FromHeading;
         double ToHeading;
     };
