@@ -17,6 +17,8 @@ if(IS_TOP_DIR)
 endif()
 
 # <<<<< Find Dependencies <<<<< #
+find_package(Threads REQUIRED)
+
 if(NOT BORIS_MATH_FOUND)
     if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/SecondParty)
         execute_process(COMMAND mkdir ${CMAKE_CURRENT_SOURCE_DIR}/SecondParty)
@@ -36,13 +38,17 @@ endif()
 SET(BORIS_PNC_COMMON_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR})
 
 aux_source_directory(Trajectory SRC_FILES_P1)
-aux_source_directory(Models SRC_FILES_P2)
+aux_source_directory(Models     SRC_FILES_P2)
+aux_source_directory(PNCUtils   SRC_FILES_P3)
 
-set(SRC_FILES ${SRC_FILES_P1} ${SRC_FILES_P2})
+set(SRC_FILES ${SRC_FILES_P1} ${SRC_FILES_P2} ${SRC_FILES_P3})
 
-
+# Build Library
 add_library(BORIS_PNC_COMMON_LIB ${SRC_FILES})
 target_include_directories(BORIS_PNC_COMMON_LIB PUBLIC ${BORIS_MATH_INCLUDE_DIRS} ${BORIS_PNC_COMMON_INCLUDE_DIRS})
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+target_link_libraries(BORIS_PNC_COMMON_LIB PUBLIC Threads::Threads)
+
 
 if(IS_TOP_DIR)
     SET(BORIS_PNC_COMMON_VERSION BorisPNCCommon_VERSION)
