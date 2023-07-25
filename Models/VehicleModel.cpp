@@ -26,16 +26,10 @@ namespace Models{
     VehicleMoveModel::Pos2d VehicleMoveModel::MoveByRadius(Pos2d const &from, double const &radius, double const &dist) const{
         double v = dist/radius;
         Pos2d ans;
-        if(v>0){
-            ans.x = from.x + (std::sin(from.phi + v) - std::sin(from.phi))*radius;
-            ans.y = from.y - (std::cos(from.phi + v) - std::cos(from.phi))*radius;
-            ans.phi = Mod2Pi(from.phi + v);
-        } else {
-            ans.x = from.x - (std::sin(from.phi - v) - std::sin(from.phi))*radius;
-            ans.y = from.y + (std::cos(from.phi - v) - std::cos(from.phi))*radius;
-            ans.phi = Mod2Pi(from.phi + v);
-        }
-        
+        ans.x = from.x + (std::sin(from.phi) - std::sin(from.phi - v))*radius;
+        ans.y = from.y - (std::cos(from.phi) - std::cos(from.phi - v))*radius;
+        ans.phi = Mod2Pi(from.phi - v);
+
         return ans;
     }
     
@@ -46,7 +40,7 @@ namespace Models{
 
     VehicleMoveModel::Pos2d VehicleMoveModel::MoveBySteerting(Pos2d const &from, double const &angle, double const &dist) const{
         if(fabs(angle)<0.000001) 
-            return Pos2d(from.x + dist*std::cos(from.phi),from.y + dist*std::sin(from.phi),from.phi+angle);
+            return Pos2d(from.x + dist*std::cos(from.phi),from.y + dist*std::sin(from.phi),from.phi);
         double radius = wheelbase/std::tan(angle);
         return MoveByRadius(from,radius,dist);
     }
