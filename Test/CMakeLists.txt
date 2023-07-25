@@ -10,5 +10,5 @@ SET(TEST_INCLUDED_DIRS (
     ${BORIS_MATH_INCLUDE_DIRS} ${BORIS_PNC_COMMON_INCLUDE_DIRS}
     )
 
-add_executable(SimpleTrackerSimulator SimpleTrackerSimulator.cpp)
-target_link_libraries(SimpleTrackerSimulator ${TEST_LINKED_LIBRARIES} )
+add_executable(TestTimer TestTimer.cpp)
+target_link_libraries(TestTimer ${TEST_LINKED_LIBRARIES} )
