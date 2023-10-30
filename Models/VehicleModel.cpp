@@ -38,7 +38,7 @@ namespace Models{
         else return  wheelbase/std::tan(angle);
     }
 
-    VehicleMoveModel::Pos2d VehicleMoveModel::MoveBySteerting(Pos2d const &from, double const &angle, double const &dist) const{
+    VehicleMoveModel::Pos2d VehicleMoveModel::MoveBySteering(Pos2d const &from, double const &angle, double const &dist) const{
         if(fabs(angle)<0.000001) 
             return Pos2d(from.x + dist*std::cos(from.phi),from.y + dist*std::sin(from.phi),from.phi);
         double radius = wheelbase/std::tan(angle);

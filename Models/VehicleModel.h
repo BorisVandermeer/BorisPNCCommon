@@ -55,7 +55,7 @@ namespace Models{
 
         double Steer2Radius(double const &angle) const;
         Pos2d MoveByRadius(Pos2d const &from, double const &radius, double const &dist)  const;
-        Pos2d MoveBySteerting(Pos2d const &from, double const &angle, double const &dist) const;
+        Pos2d MoveBySteering(Pos2d const &from, double const &angle, double const &dist) const;
         
         
     };
