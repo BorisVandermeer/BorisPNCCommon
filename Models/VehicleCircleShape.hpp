@@ -42,7 +42,7 @@ namespace Models{
         auto sinval = std::sin(CurPos.phi);
         for(auto i = 0;i<ans.size();i++){
             ans[i].x = CurPos.x + CircleCenters[i]*cosval;
-            ans[i].y = CurPos.x + CircleCenters[i]*sinval;
+            ans[i].y = CurPos.y + CircleCenters[i]*sinval;
         }
         return ans;
     }
