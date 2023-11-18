@@ -38,6 +38,11 @@ namespace Models{
         else return  wheelbase/std::tan(angle);
     }
 
+    double VehicleMoveModel::Radius2Steer(double const &Radius) const{
+        if(fabs(Radius)<0.000001) return __DBL_MAX__;
+        else return std::atan(wheelbase/Radius);
+    }
+
     VehicleMoveModel::Pos2d VehicleMoveModel::MoveBySteering(Pos2d const &from, double const &angle, double const &dist) const{
         if(fabs(angle)<0.000001) 
             return Pos2d(from.x + dist*std::cos(from.phi),from.y + dist*std::sin(from.phi),from.phi);
