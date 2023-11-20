@@ -54,6 +54,7 @@ namespace Models{
         typedef Points::Pos2D Pos2d;
 
         double Steer2Radius(double const &angle) const;
+        double Radius2Steer(double const &Radius) const;
         Pos2d MoveByRadius(Pos2d const &from, double const &radius, double const &dist)  const;
         Pos2d MoveBySteering(Pos2d const &from, double const &angle, double const &dist) const;
         
